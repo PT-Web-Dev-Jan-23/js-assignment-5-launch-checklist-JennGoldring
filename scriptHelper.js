@@ -3,17 +3,18 @@ require('isomorphic-fetch');
 
 function addDestinationInfo(document, name, diameter, star, distance, moons, imageUrl) {
    // Here is the HTML formatting for our mission target div.
-   /*
+   let missionTarget = document.getElementById('missionTarget');
+   missionTarget.innerHTML = `
                 <h2>Mission Destination</h2>
                 <ol>
-                    <li>Name: </li>
-                    <li>Diameter: </li>
+                    <li>Name: ${name}</li>
+                    <li>Diameter: ${diameter}</li>
                     <li>Star: ${star}</li>
-                    <li>Distance from Earth: </li>
-                    <li>Number of Moons: </li>
+                    <li>Distance from Earth: ${distance} </li>
+                    <li>Number of Moons: ${moons}</li>
                 </ol>
-                <img src="">
-   */
+                <img src= '${imageUrl}'>
+`
 }
 
 function validateInput(testInput) {
@@ -31,11 +32,12 @@ function validateInput(testInput) {
 
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     event.preventDefault();
+    //DOM Elements
    let pilotStatus = document.getElementById("pilotStatus");
    let copilotStatus = document.getElementById("copilotStatus");
    let fuelStatus = document.getElementById("fuelStatus");
    let cargoStatus = document.getElementById("cargoStatus");
-// pilot and copilot are strings
+// pilot and copilot are strings and all fields have info
    if (pilot === "" || copilot === "" || fuelLevel === "" || cargoLevel === "") {
     alert ("All fields are required!"); 
     return;
@@ -49,6 +51,7 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     alert ("Fuel level and cargo mass should be numbers!");
     return;
    }
+   
 }
 
 async function myFetch() {
