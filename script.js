@@ -1,8 +1,6 @@
 // Write your JavaScript code here!
 
-
 window.addEventListener("load", function () {
-
     let form = document.querySelector("form");
     form.addEventListener("submit", function (event) {
        event.preventDefault();
@@ -15,7 +13,7 @@ window.addEventListener("load", function () {
        if (pilotName.value === "" || copilotName.value === "" || fuelLevel.value === "" || cargoMass.value === "") {
           alert("All fields are required!");
        } else if (!isNaN(pilotName.value) || !isNaN(copilotName.value) || isNaN(fuelLevel.value) || isNaN(cargoMass.value)) {
-          alert("Please enter valid information for each field.");
+          alert("Please enter string for pilot and number for fuel and cargo.");
        } else {
           let faultyItems = document.getElementById("faultyItems");
           let launchStatus = document.getElementById("launchStatus");
@@ -68,4 +66,3 @@ window.addEventListener("load", function () {
        <img src="${image}">
     `;
  }
- 
