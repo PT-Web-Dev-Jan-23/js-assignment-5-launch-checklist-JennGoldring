@@ -28,7 +28,7 @@ function validateInput(testInput) {
     }
  }
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
-    event.preventDefault();
+   // event.preventDefault();
     //DOM Elements
    let pilotStatus = document.getElementById("pilotStatus");
    let copilotStatus = document.getElementById("copilotStatus");
@@ -52,6 +52,7 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     alert ("Fuel level and cargo mass should be numbers!");
     return;
    }
+  // event.preventDefault();
 }
 //fetches list of planets
 async function myFetch() {

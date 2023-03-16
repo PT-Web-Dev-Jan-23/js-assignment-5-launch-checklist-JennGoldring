@@ -67,7 +67,8 @@ window.addEventListener("load", function () {
        <img src="${image}">
     `;
  }
-//  let listedPlanets;
+// pasted from book
+ //  let listedPlanets;
 // // Set listedPlanetsResponse equal to the value returned by calling myFetch()
 // let listedPlanetsResponse;
 // listedPlanetsResponse.then(function (result) {
