@@ -48,7 +48,7 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
    }
 
    // fuel level and cargo mass are numbers
-   if(isNan(fuelLevel) || isNan(cargoLevel)) {
+   if(isNaN(fuelLevel) || isNaN(cargoLevel)) {
     alert ("Fuel level and cargo mass should be numbers!");
     return;
    }
