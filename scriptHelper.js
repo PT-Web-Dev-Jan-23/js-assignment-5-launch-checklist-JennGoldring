@@ -16,6 +16,7 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
              <img src= '${imageUrl}'>
 `
 }
+//I had a function in here twice
 
 function validateInput(testInput) {
     if (testInput === "") {
@@ -51,16 +52,12 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     alert ("Fuel level and cargo mass should be numbers!");
     return;
    }
-  
-
 }
-
+//fetches list of planets
 async function myFetch() {
     let planetsReturned;
-    planetsReturned = await fetch().then( function(response){
-        });
     planetsReturned = await fetch('https://handlers.education.launchcode.org/static/planets.json').then( function(response) {
-        console.log(responses);
+        console.log(response);
         return response.json();
     });
     
@@ -72,26 +69,7 @@ function pickPlanet(planets) {
     const index = Math.floor(Math.random() * planets.length);
     return planets[index];
   }
-  
-  // Updates the mission target div with data about the selected planet
-  function addDestinationInfo(document, planet) {
-    const missionTarget = document.getElementById("missionTarget");
-  
-    missionTarget.innerHTML = `
-      <h2>Mission Destination</h2>
-      <ol>
-        <li>Name: ${planet.name}</li>
-        <li>Diameter: ${planet.diameter}</li>
-        <li>Star: ${planet.star}</li>
-        <li>Distance from Earth: ${planet.distance}</li>
-        <li>Number of Moons: ${planet.moons}</li>
-      </ol>
-      <img src="${planet.image}">
-    `;
-  }
-
-  
-  
+   
 module.exports.addDestinationInfo = addDestinationInfo;
 module.exports.validateInput = validateInput;
 module.exports.formSubmission = formSubmission;
