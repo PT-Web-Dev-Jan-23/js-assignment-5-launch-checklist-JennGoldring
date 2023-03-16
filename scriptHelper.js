@@ -26,7 +26,8 @@ function validateInput(testInput) {
     } else {
         return 'Is a Number';
     }
- }
+}
+
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
    // event.preventDefault();
     //DOM Elements
@@ -35,41 +36,51 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
    let fuelStatus = document.getElementById("fuelStatus");
    let cargoStatus = document.getElementById("cargoStatus");
    let launchStatus = document.getElementById("launchStatus");
-   let faultyItems = document.getElementById("faultyItems");
 
 // pilot and copilot are strings and all fields have info
-   if (pilot === "" || copilot === "" || fuelLevel === "" || cargoLevel === "") {
+   if (validateInput(pilot) === "Empty" || (copilot) === "Empty" || (fuelLevel) === "Empty" || (cargoLevel) === "Empty") {
     alert ("All fields are required!"); 
-    return;
    }
    if (!isNaN(pilot) || !isNaN(copilot)) {
     alert ("Pilot and Co-pilot names should be strings!");
-    return;
    }
 
    // fuel level and cargo mass are numbers
    if(isNaN(fuelLevel) || isNaN(cargoLevel)) {
     alert ("Fuel level and cargo mass should be numbers!");
-    return;
-   }
-  // event.preventDefault();
-}
+   } else {
+    list.style.visibility = "visible";
+
+if (fuelLevel.value < 10000) {
+    launchStatus.innerHTML = "Shuttle not ready for launch.";
+    launchStatus.style.color = "red";
+
+} else if (cargoMass.value > 10000) {
+
+    document.getElementById("cargoStatus").innerHTML = "Cargo mass too high for launch.";
+    launchStatus.innerHTML = "Shuttle not ready for launch.";
+    launchStatus.style.color = "red";
+
+} else {
+    
+    launchStatus.innerHTML = "Shuttle is ready for launch.";
+    launchStatus.style.color = "green";
+        }
+    }
+ }
+
 //fetches list of planets
 async function myFetch() {
-    let planetsReturned;
+    let planetsReturned; 
     planetsReturned = await fetch('https://handlers.education.launchcode.org/static/planets.json').then( function(response) {
-        console.log(response);
-        return response.json();
-    });
-    
-    console.log(planetsReturned);
-    return planetsReturned;
+});
+return planetsReturned; 
 }
 // Picks a random planet from a list of planets
 function pickPlanet(planets) {
     const index = Math.floor(Math.random() * planets.length);
     return planets[index];
-  }
+}
    
 module.exports.addDestinationInfo = addDestinationInfo;
 module.exports.validateInput = validateInput;
