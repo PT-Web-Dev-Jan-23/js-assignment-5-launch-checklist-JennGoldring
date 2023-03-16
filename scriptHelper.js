@@ -16,7 +16,6 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
              <img src= '${imageUrl}'>
 `
 }
-//I had a function in here twice
 
 function validateInput(testInput) {
     if (testInput === "") {
