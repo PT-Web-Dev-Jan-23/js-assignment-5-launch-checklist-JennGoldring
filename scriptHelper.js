@@ -39,33 +39,38 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
    let copilotStatus = document.getElementById("copilotStatus");
    let fuelStatus = document.getElementById("fuelStatus");
    let cargoStatus = document.getElementById("cargoStatus");
-   let launchStatus = document.getElementById("launchStatus");
-
+  
 // pilot and copilot are strings and all fields have info
    if (validateInput(pilot) === "Empty" || validateInput(copilot) === "Empty" || validateInput(fuelLevel) === "Empty" || validateInput(cargoLevel) === "Empty") {
     alert ("All fields are required!"); 
    } else if (validateInput(pilot) === "Is a Number" || validateInput(copilot) === "Is a Number" || validateInput(fuelLevel) === "Not a Number" || validateInput(cargoLevel) === "Not a Number") {
     alert ("Enter valid information for each field!");
-   }
-
-   // fuel level and cargo mass are numbers
-   if (isNaN(fuelLevel) || isNaN(cargoLevel)) {
-    alert ("Fuel level and cargo mass should be numbers!");
    } else {
     list.style.visibility = "visible";
+    pilotStatus.innerHTML = 'Pilot ${pilot} is ready for launch';
+    copilotStatus.innerHTML = 'Copilot ${copilot} is ready for launch';
+    let launchStatus = document.getElementByID("launchStatus");
 
-if (fuelLevel.value < 10000) {
+if (fuelLevel < 10000 && cargoLevel <= 10000 ) {
+    fuelStatus.innerHTML = "Fuel level too low for launch";
     launchStatus.innerHTML = "Shuttle not ready for launch.";
     launchStatus.style.color = "red";
 
-} else if (cargoMass.value > 10000) {
+} else if (fuelLevel < 10000 && cargoLevel.value > 10000) {
+    cargoStatus.innerHTML = "Cargo mass too high for launch.";
+    fuelLevel.innerHTML = "Fuel level too low for launch";
+    launchStatus.innerHTML = "Shuttle not ready for launch.";
+    launchStatus.style.color = "red";
 
-    document.getElementById("cargoStatus").innerHTML = "Cargo mass too high for launch.";
+} else if (fuelLevel >= 10000 && cargoLevel.value > 10000) {
+    cargoStatus.innerHTML = "Cargo mass too high for launch.";
+    fuelLevel.innerHTML = "Fuel level good for launch";
     launchStatus.innerHTML = "Shuttle not ready for launch.";
     launchStatus.style.color = "red";
 
 } else {
-    
+    fuelLevel.innerHTML = "Fuel level good for launch"
+    cargoStatus.innerHTML = "Cargo mass good for launch"
     launchStatus.innerHTML = "Shuttle is ready for launch.";
     launchStatus.style.color = "green";
         }
@@ -75,6 +80,7 @@ if (fuelLevel.value < 10000) {
 //fetches list of planets
 async function myFetch() {
     let planetsReturned; 
+    
     planetsReturned = await fetch('https://handlers.education.launchcode.org/static/planets.json').then( function(response) {
         return response.json();
 });
