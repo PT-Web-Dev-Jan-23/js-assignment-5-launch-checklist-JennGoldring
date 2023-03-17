@@ -18,15 +18,13 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
 }
  
 function validateInput(testInput) {
-    let numberInput = Number (testInput);
+    let numberInput = Number(testInput);
     if (testInput === "") {
         return "Empty";
     }
-    else if (isNaN(numberInput)) {
+    else if (isNaN(testInput)) {
         return "Not a Number";
-    }
-    else if (!isNaN(numberInput)) 
-    {
+    } else {
     return 'Is a Number';
     }
 }
@@ -53,26 +51,27 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
 
 if (fuelLevel < 10000 && cargoLevel <= 10000 ) {
     fuelStatus.innerHTML = "Fuel level too low for launch";
-    launchStatus.innerHTML = "Shuttle not ready for launch.";
+    cargoStatus.innerHTML = "Cargo Mass low enough for launch";
+    launchStatus.innerHTML = "Shuttle Not Ready for Launch";
     launchStatus.style.color = "rgb(199, 37, 78)";
 
-} else if (fuelLevel < 10000 && cargoLevel.value > 10000) {
+} else if (fuelLevel < 10000 && cargoLevel > 10000) {
     cargoStatus.innerHTML = "Cargo mass too high for launch.";
     fuelLevel.innerHTML = "Fuel level too low for launch";
-    launchStatus.innerHTML = "Shuttle not ready for launch.";
+    launchStatus.innerHTML = "Shuttle Not Ready for Launch";
     launchStatus.style.color = "rgb(199, 37, 78)";
 
-} else if (fuelLevel >= 10000 && cargoLevel.value > 10000) {
+} else if (fuelLevel >= 10000 && cargoLevel > 10000) {
     cargoStatus.innerHTML = "Cargo mass too high for launch.";
     fuelLevel.innerHTML = "Fuel level high enough for launch";
-    launchStatus.innerHTML = "Shuttle not ready for launch.";
+    launchStatus.innerHTML = "Shuttle Not Ready for Launch";
     launchStatus.style.color = "rgb(199, 37, 78)";
 
 } else {
     fuelLevel.innerHTML = "Fuel level high enough for launch"
     cargoStatus.innerHTML = "Cargo mass low enough for launch"
     launchStatus.innerHTML = "Shuttle is Ready for Launch";
-    launchStatus.style.color = "green";
+    launchStatus.style.color = "rgb(199, 37, 78)";
         }
     }
  }
