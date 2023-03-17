@@ -3,7 +3,7 @@ require('isomorphic-fetch');
 
 function addDestinationInfo(document, name, diameter, star, distance, moons, imageUrl) {
    // Here is the HTML formatting for our mission target div.
-   let missionTarget = document.getElementById('missionTarget');
+   let missionTarget = document.getElementById("missionTarget");
    missionTarget.innerHTML = `
         <h2>Mission Destination</h2>
              <ol>
@@ -49,7 +49,7 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     list.style.visibility = "visible";
     pilotStatus.innerHTML = 'Pilot ${pilot} is ready for launch';
     copilotStatus.innerHTML = 'Copilot ${copilot} is ready for launch';
-    let launchStatus = document.getElementByID("launchStatus");
+    let launchStatus = document.getElementById("launchStatus");
 
 if (fuelLevel < 10000 && cargoLevel <= 10000 ) {
     fuelStatus.innerHTML = "Fuel level too low for launch";
@@ -64,14 +64,14 @@ if (fuelLevel < 10000 && cargoLevel <= 10000 ) {
 
 } else if (fuelLevel >= 10000 && cargoLevel.value > 10000) {
     cargoStatus.innerHTML = "Cargo mass too high for launch.";
-    fuelLevel.innerHTML = "Fuel level good for launch";
+    fuelLevel.innerHTML = "Fuel level high enough for launch";
     launchStatus.innerHTML = "Shuttle not ready for launch.";
     launchStatus.style.color = "red";
 
 } else {
-    fuelLevel.innerHTML = "Fuel level good for launch"
-    cargoStatus.innerHTML = "Cargo mass good for launch"
-    launchStatus.innerHTML = "Shuttle is ready for launch.";
+    fuelLevel.innerHTML = "Fuel level high enough for launch"
+    cargoStatus.innerHTML = "Cargo mass low enough for launch"
+    launchStatus.innerHTML = "Shuttle is Ready for Launch";
     launchStatus.style.color = "green";
         }
     }
@@ -80,7 +80,7 @@ if (fuelLevel < 10000 && cargoLevel <= 10000 ) {
 //fetches list of planets
 async function myFetch() {
     let planetsReturned; 
-    
+
     planetsReturned = await fetch('https://handlers.education.launchcode.org/static/planets.json').then( function(response) {
         return response.json();
 });
