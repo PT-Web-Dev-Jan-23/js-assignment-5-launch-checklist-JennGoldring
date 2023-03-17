@@ -14,21 +14,26 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
                   <li>Number of Moons: ${moons}</li>
              </ol>
              <img src= '${imageUrl}'>
-`
+            `;
 }
-
+ 
 function validateInput(testInput) {
+    let numberInput = Number (testInput);
     if (testInput === "") {
-        return 'Empty';
-    } else if (isNaN(testInput)) {
-        return 'Not a Number';
-    } else {
-        return 'Is a Number';
+        return "Empty";
+    }
+    else if (isNaN(numberInput)) {
+        return "Not a Number";
+    }
+    else if (!isNaN(numberInput)) 
+    {
+    return 'Is a Number';
     }
 }
 
+
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
-   // event.preventDefault();
+
     //DOM Elements
    let pilotStatus = document.getElementById("pilotStatus");
    let copilotStatus = document.getElementById("copilotStatus");
@@ -37,15 +42,14 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
    let launchStatus = document.getElementById("launchStatus");
 
 // pilot and copilot are strings and all fields have info
-   if (validateInput(pilot) === "Empty" || (copilot) === "Empty" || (fuelLevel) === "Empty" || (cargoLevel) === "Empty") {
+   if (validateInput(pilot) === "Empty" || validateInput(copilot) === "Empty" || validateInput(fuelLevel) === "Empty" || validateInput(cargoLevel) === "Empty") {
     alert ("All fields are required!"); 
-   }
-   if (!isNaN(pilot) || !isNaN(copilot)) {
-    alert ("Pilot and Co-pilot names should be strings!");
+   } else if (validateInput(pilot) === "Is a Number" || validateInput(copilot) === "Is a Number" || validateInput(fuelLevel) === "Not a Number" || validateInput(cargoLevel) === "Not a Number") {
+    alert ("Enter valid information for each field!");
    }
 
    // fuel level and cargo mass are numbers
-   if(isNaN(fuelLevel) || isNaN(cargoLevel)) {
+   if (isNaN(fuelLevel) || isNaN(cargoLevel)) {
     alert ("Fuel level and cargo mass should be numbers!");
    } else {
     list.style.visibility = "visible";
@@ -72,7 +76,9 @@ if (fuelLevel.value < 10000) {
 async function myFetch() {
     let planetsReturned; 
     planetsReturned = await fetch('https://handlers.education.launchcode.org/static/planets.json').then( function(response) {
+        return response.json();
 });
+
 return planetsReturned; 
 }
 // Picks a random planet from a list of planets
