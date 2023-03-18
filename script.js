@@ -2,7 +2,7 @@
 
 // const { formSubmission } = require("./scriptHelper");
 
-window.addEventListener("load", function() {
+window.addEventListener('load', function() {
 
    let listedPlanets;
    let listedPlanetsResponse = myFetch();
@@ -14,11 +14,11 @@ window.addEventListener("load", function() {
    addDestinationInfo(document, selectedPlanet.name, selectedPlanet.diameter, selectedPlanet.star, selectedPlanet.distance, selectedPlanet.moons, selectedPlanet.image);
    })
    
-   let list = document.getElementById("faultyItems");
+   let list = document.getElementById('faultyItems');
    list.style.visibility = "hidden";
    let form = document.querySelector("form");
  
-   form.addEventListener("submit", function(event) {
+   form.addEventListener("form", function(event) {
       event.preventDefault();
       let pilotInput = document.querySelector("input[name=pilotName]");
       let pilot = pilotInput.value;
